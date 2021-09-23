@@ -11,9 +11,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 project "GameEngine"
 	location "GameEngine"
-	kind "ConsoleApp"
+	kind "StaticLib"
 	language "C++"
-
+	cppdialect "C++17"
+	
 	targetdir ("%{prj.name}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("%{prj.name}/bin-int/" .. outputdir .. "/%{prj.name}")
 
@@ -57,6 +58,12 @@ project "GameEngine"
 		runtime "Debug"
 		symbols "on"
 
+		defines
+		{
+			"GLEW_STATIC",
+			"WIN32",
+			"EN_DEBUG"
+		}
 		links
 		{
 			"glfw3.lib",
@@ -78,7 +85,8 @@ project "BouncingBall"
 	location "BouncingBall"
 	kind "ConsoleApp"
 	language "C++"
-
+	cppdialect "C++17"
+	
 	targetdir ("%{prj.name}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("%{prj.name}/bin-int/" .. outputdir .. "/%{prj.name}")
 
@@ -91,7 +99,7 @@ project "BouncingBall"
 
 	includedirs
 	{
-
+		"%{prj.name}/../GameEngine/src",
 	}
 
 	libdirs
