@@ -1,0 +1,15 @@
+#Binaries
+**/bin/
+**/bin-int/
+
+**/vendor/premake
+
+#folders
+
+
+#Visual Studio files
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
