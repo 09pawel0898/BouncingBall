@@ -1,12 +1,13 @@
 #include <Engine.h>
+#include <Engine/Core/EntryPoint.h>
 
 #define EN_DEBUG
-#include <Engine/Core/EntryPoint.h>
 
 class BouncingBallApplication : public Engine::Application
 {
 public:
 	BouncingBallApplication()
+		:	Engine::Application()
 	{
 
 	}

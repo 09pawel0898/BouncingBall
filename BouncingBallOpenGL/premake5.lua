@@ -116,7 +116,6 @@ project "BouncingBall"
 
 		defines
 		{
-			"WIN32"
 		}
 
 	filter "configurations:Debug"
