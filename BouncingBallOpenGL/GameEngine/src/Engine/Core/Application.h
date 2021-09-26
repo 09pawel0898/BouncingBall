@@ -15,10 +15,7 @@ namespace En
 {
 	class Event;
 	class WindowClosedEvent;
-}
 
-namespace En
-{
 	class Application
 	{
 	private:

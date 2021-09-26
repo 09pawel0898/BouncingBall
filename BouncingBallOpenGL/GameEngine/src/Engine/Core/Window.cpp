@@ -51,14 +51,14 @@ namespace En
 				case GLFW_PRESS: 
 				{
 					EN_DEBUGMSG("%s%d%s","[Event] Key ",key," pressed");
-					Keyboard::KeyPressedEvent event((Keyboard::KeyCode)key);
+					KeyPressedEvent event((Keyboard::KeyCode)key);
 					properties->eventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE: 
 				{
 					EN_DEBUGMSG("%s%d%s", "[Event] Key ", key, " released");
-					Keyboard::KeyReleasedEvent event((Keyboard::KeyCode)key);
+					KeyReleasedEvent event((Keyboard::KeyCode)key);
 					properties->eventCallback(event);
 					break;
 				}
@@ -76,14 +76,14 @@ namespace En
 			case GLFW_PRESS:
 			{
 				EN_DEBUGMSG("%s%d%s", "[Event] Mouse button ", button, " pressed");
-				Mouse::MouseButtonPressedEvent event((Mouse::MouseButtonCode)button);
+				MouseButtonPressedEvent event((Mouse::MouseButtonCode)button);
 				properties->eventCallback(event);
 				break;
 			}
 			case GLFW_RELEASE:
 			{
 				EN_DEBUGMSG("%s%d%s", "[Event] Mouse button ", button, " released");
-				Mouse::MouseButtonReleasedEvent event((Mouse::MouseButtonCode)button);
+				MouseButtonReleasedEvent event((Mouse::MouseButtonCode)button);
 				properties->eventCallback(event);
 				break;
 			}
@@ -96,7 +96,7 @@ namespace En
 		{
 			EN_DEBUGMSG("%s%.0f%s%.0f%s", "[Event] Mouse moved to position (", xPos,",",yPos, ")");
 			auto properties = static_cast<WindowProperties*>(glfwGetWindowUserPointer(window));
-			Mouse::MouseMovedEvent event(xPos,yPos);
+			MouseMovedEvent event(xPos,yPos);
 			properties->eventCallback(event);
 		});
 

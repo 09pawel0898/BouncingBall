@@ -17,55 +17,56 @@ namespace En
 			ButtonLeft = Button0,
 			ButtonRight = Button1
 		};
-
-		class MouseMovedEvent : public Event
-		{
-		private:
-			double m_MouseX, m_MouseY;
-
-		public:
-			MouseMovedEvent(double x, double y)
-				:	m_MouseX(x),
-					m_MouseY(y)
-			{}
-
-			inline double GetX(void) const { return m_MouseX; }
-			inline double GetY(void) const { return m_MouseY; }
-
-			EVENT_CLASS_TYPE(MouseMoved)
-		};
-
-		class MouseButtonEvent : public Event
-		{
-		protected:
-			MouseButtonCode m_ButtonCode;
-
-			MouseButtonEvent(MouseButtonCode button) 
-				:	m_ButtonCode(button)
-			{}
-		public:
-			inline MouseButtonCode getButtonCode(void) const 
-			{ return m_ButtonCode; }
-		};
-
-		class MouseButtonPressedEvent : public MouseButtonEvent
-		{
-		public:
-			MouseButtonPressedEvent(MouseButtonCode button) 
-				:	MouseButtonEvent(button)
-			{}
-
-			EVENT_CLASS_TYPE(MouseButtonPressed)
-		};
-
-		class MouseButtonReleasedEvent : public MouseButtonEvent
-		{
-		public:
-			MouseButtonReleasedEvent(MouseButtonCode button) 
-				:	MouseButtonEvent(button)
-			{}
-
-			EVENT_CLASS_TYPE(MouseButtonReleased)
-		};
 	}
+	using namespace Mouse;
+
+	class MouseMovedEvent : public Event
+	{
+	private:
+		double m_MouseX, m_MouseY;
+
+	public:
+		MouseMovedEvent(double x, double y)
+			:	m_MouseX(x),
+				m_MouseY(y)
+		{}
+
+		inline double GetX(void) const { return m_MouseX; }
+		inline double GetY(void) const { return m_MouseY; }
+
+		EVENT_CLASS_TYPE(MouseMoved)
+	};
+
+	class MouseButtonEvent : public Event
+	{
+	protected:
+		MouseButtonCode m_ButtonCode;
+
+		MouseButtonEvent(MouseButtonCode button) 
+			:	m_ButtonCode(button)
+		{}
+	public:
+		inline MouseButtonCode getButtonCode(void) const 
+		{ return m_ButtonCode; }
+	};
+
+	class MouseButtonPressedEvent : public MouseButtonEvent
+	{
+	public:
+		MouseButtonPressedEvent(MouseButtonCode button) 
+			:	MouseButtonEvent(button)
+		{}
+
+		EVENT_CLASS_TYPE(MouseButtonPressed)
+	};
+
+	class MouseButtonReleasedEvent : public MouseButtonEvent
+	{
+	public:
+		MouseButtonReleasedEvent(MouseButtonCode button) 
+			:	MouseButtonEvent(button)
+		{}
+
+		EVENT_CLASS_TYPE(MouseButtonReleased)
+	};
 }

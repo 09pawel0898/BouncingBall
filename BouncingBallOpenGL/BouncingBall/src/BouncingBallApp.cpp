@@ -13,10 +13,28 @@ public:
 	{}
 	virtual ~MainMenuState() = default;
 
-	virtual void OnRender(void) const override {}
-	virtual bool OnUpdate(double deltaTime) override { return true; }
-	virtual bool OnEvent(En::Event& event) override { return true; }
+	virtual void OnRender(void) const override 
+	{
+	
+	}
 
+	virtual bool OnUpdate(double deltaTime) override 
+	{ 
+		return true; 
+	}
+
+	virtual bool OnEvent(En::Event& event) override 
+	{ 
+		En::EventDispatcher dispatcher(event);
+		dispatcher.Dipatch<En::KeyPressedEvent>(BIND_EVENT_FN(MainMenuState::OnKeyPressed));
+
+		return true;
+	}
+
+	bool OnKeyPressed(En::KeyPressedEvent event)
+	{
+		return true;
+	}
 };
 
 class BouncingBallApplication : public En::Application
@@ -27,7 +45,6 @@ public:
 	{
 		GetStateManager()->RegisterState<MainMenuState>("MainMenu");
 		GetStateManager()->PushState("MainMenu");
-		GetStateManager()->PopState();
 	}
 
 	~BouncingBallApplication() = default;

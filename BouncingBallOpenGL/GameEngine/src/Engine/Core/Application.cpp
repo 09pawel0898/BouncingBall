@@ -11,6 +11,10 @@ namespace En
     {
         EventDispatcher dispatcher(event);
         dispatcher.Dipatch<WindowClosedEvent>(BIND_EVENT_FN(OnWindowClosed));
+
+        if (event.Handled())
+            return;
+        m_StateManager->OnEvent(event);
     }
 
     bool Application::OnWindowClosed(WindowClosedEvent& event)

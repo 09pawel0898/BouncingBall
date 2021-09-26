@@ -18,11 +18,12 @@ namespace En
 	class Event
 	{
 	protected:
-		bool m_Handled;
+		bool m_Handled = false;
 		friend class EventDispatcher;
 	public:
 		virtual EventType GetEventType() const = 0;
 		virtual ~Event() = default;
+		inline bool Handled() const { return m_Handled; }
 	};
 
 	class EventDispatcher
