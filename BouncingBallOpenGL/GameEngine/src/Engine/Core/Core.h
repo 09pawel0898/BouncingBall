@@ -4,14 +4,6 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-#ifdef EN_DEBUG
-#define EN_DEBUGMSG(f_, ...) printf("%s", "[Engine] ");\
-printf((f_),__VA_ARGS__);\
-printf("%s", "\n");
-#else
-#define EN_DEBUGMSG(f_, ...)
-#endif
-
 #define EN_ASSERT(x) if(!(x)) __debugbreak();
 
 #define GLCall(x) GLClearError();\

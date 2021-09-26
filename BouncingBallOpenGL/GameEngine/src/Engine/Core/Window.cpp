@@ -3,6 +3,7 @@
 #include "../Events/WindowEvent.h"
 #include "../Events/KeyEvent.h"
 #include "../Events/MouseEvent.h"
+#include "Debug.h"
 
 namespace En
 {
@@ -82,7 +83,7 @@ namespace En
 			case GLFW_RELEASE:
 			{
 				EN_DEBUGMSG("%s%d%s", "[Event] Mouse button ", button, " released");
-				Mouse::MouseButtonPressedEvent event((Mouse::MouseButtonCode)button);
+				Mouse::MouseButtonReleasedEvent event((Mouse::MouseButtonCode)button);
 				properties->eventCallback(event);
 				break;
 			}

@@ -1,9 +1,9 @@
+#define EN_DEBUG
+
 #include <Engine.h>
 #include <Engine/Core/EntryPoint.h>
 
 #include <iostream>
-
-#define EN_DEBUG
 
 class MainMenuState : public En::States::State
 {
@@ -14,7 +14,7 @@ public:
 	virtual ~MainMenuState() = default;
 
 	virtual void OnRender(void) const override {}
-	virtual bool OnUpdate(double deltaTime) override { std::cout << "Hello"; return true; }
+	virtual bool OnUpdate(double deltaTime) override { return true; }
 	virtual bool OnEvent(En::Event& event) override { return true; }
 
 };
@@ -27,6 +27,7 @@ public:
 	{
 		GetStateManager()->RegisterState<MainMenuState>("MainMenu");
 		GetStateManager()->PushState("MainMenu");
+		GetStateManager()->PopState();
 	}
 
 	~BouncingBallApplication()

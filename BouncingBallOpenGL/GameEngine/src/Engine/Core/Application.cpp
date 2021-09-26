@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "Window.h"
 #include "Core.h"
+#include "Debug.h"
 #include "../Events/WindowEvent.h"
 
 #include <chrono>
