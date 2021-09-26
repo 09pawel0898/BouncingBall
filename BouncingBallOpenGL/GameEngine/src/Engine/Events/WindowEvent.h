@@ -2,7 +2,7 @@
 
 #include "Event.h"
 
-namespace Engine
+namespace En
 {
 	class WindowClosedEvent : public Event
 	{

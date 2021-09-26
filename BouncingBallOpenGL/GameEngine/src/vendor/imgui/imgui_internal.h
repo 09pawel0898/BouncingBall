@@ -1170,7 +1170,7 @@ enum ImGuiNextItemDataFlags_
 struct ImGuiNextItemData
 {
     ImGuiNextItemDataFlags      Flags;
-    float                       Width;          // Set by SetNextItemWidth()
+    float                       width;          // Set by SetNextItemWidth()
     ImGuiID                     FocusScopeId;   // Set by SetNextItemMultiSelectData() (!= 0 signify value has been set, so it's an alternate version of HasSelectionData, we don't use Flags for this because they are cleared too early. This is mostly used for debugging)
     ImGuiCond                   OpenCond;
     bool                        OpenVal;        // Set by SetNextItemOpen()
@@ -1201,7 +1201,7 @@ struct ImGuiWindowStackData
 struct ImGuiShrinkWidthItem
 {
     int         Index;
-    float       Width;
+    float       width;
 };
 
 struct ImGuiPtrOrIndex
@@ -1404,7 +1404,7 @@ struct ImGuiContextHook
     ImGuiID                     HookId;     // A unique ID assigned by AddContextHook()
     ImGuiContextHookType        Type;
     ImGuiID                     Owner;
-    ImGuiContextHookCallback    Callback;
+    ImGuiContextHookCallback    eventCallback;
     void*                       UserData;
 
     ImGuiContextHook()          { memset(this, 0, sizeof(*this)); }
@@ -2010,7 +2010,7 @@ struct ImGuiTabItem
     int                 LastFrameVisible;
     int                 LastFrameSelected;      // This allows us to infer an ordered list of the last activated tabs with little maintenance
     float               Offset;                 // Position relative to beginning of tab
-    float               Width;                  // Width currently displayed
+    float               width;                  // Width currently displayed
     float               ContentWidth;           // Width of label, stored during BeginTabItem() call
     ImS32               NameOffset;             // When Window==NULL, offset to name within parent ImGuiTabBar::TabsNames
     ImS16               BeginOrder;             // BeginTabItem() order, used to re-order tabs after toggling ImGuiTabBarFlags_Reorderable

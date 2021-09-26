@@ -2,11 +2,11 @@
 
 #include "Event.h"
 
-namespace Engine
+namespace En
 {
 	namespace Mouse
 	{
-		enum class MouseCode : uint16_t
+		enum class MouseButtonCode : uint16_t
 		{
 			Button0 = 0,
 			Button1 = 1,
@@ -21,16 +21,16 @@ namespace Engine
 		class MouseMovedEvent : public Event
 		{
 		private:
-			float m_MouseX, m_MouseY;
+			double m_MouseX, m_MouseY;
 
 		public:
-			MouseMovedEvent(float x, float y)
+			MouseMovedEvent(double x, double y)
 				:	m_MouseX(x),
 					m_MouseY(y)
 			{}
 
-			inline float GetX(void) const { return m_MouseX; }
-			inline float GetY(void) const { return m_MouseY; }
+			inline double GetX(void) const { return m_MouseX; }
+			inline double GetY(void) const { return m_MouseY; }
 
 			EVENT_CLASS_TYPE(MouseMoved)
 		};
@@ -38,20 +38,20 @@ namespace Engine
 		class MouseButtonEvent : public Event
 		{
 		protected:
-			MouseCode m_ButtonCode;
+			MouseButtonCode m_ButtonCode;
 
-			MouseButtonEvent(MouseCode button) 
+			MouseButtonEvent(MouseButtonCode button) 
 				:	m_ButtonCode(button)
 			{}
 		public:
-			inline MouseCode getButtonCode(void) const 
+			inline MouseButtonCode getButtonCode(void) const 
 			{ return m_ButtonCode; }
 		};
 
 		class MouseButtonPressedEvent : public MouseButtonEvent
 		{
 		public:
-			MouseButtonPressedEvent(MouseCode button) 
+			MouseButtonPressedEvent(MouseButtonCode button) 
 				:	MouseButtonEvent(button)
 			{}
 
@@ -61,7 +61,7 @@ namespace Engine
 		class MouseButtonReleasedEvent : public MouseButtonEvent
 		{
 		public:
-			MouseButtonReleasedEvent(MouseCode button) 
+			MouseButtonReleasedEvent(MouseButtonCode button) 
 				:	MouseButtonEvent(button)
 			{}
 

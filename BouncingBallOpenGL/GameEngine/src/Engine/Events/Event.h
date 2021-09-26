@@ -1,9 +1,8 @@
 #pragma once
 
-#include "../Core/Core.h"
 #include <functional>
 
-namespace Engine
+namespace En
 {
 	enum class EventType
 	{
@@ -47,6 +46,5 @@ namespace Engine
 			}
 			return false;
 		}
-
 	};
 }

@@ -3450,7 +3450,7 @@ void ImGui::DestroyContext(ImGuiContext* ctx)
 ImGuiID ImGui::AddContextHook(ImGuiContext* ctx, const ImGuiContextHook* hook)
 {
     ImGuiContext& g = *ctx;
-    IM_ASSERT(hook->Callback != NULL && hook->HookId == 0 && hook->Type != ImGuiContextHookType_PendingRemoval_);
+    IM_ASSERT(hook->eventCallback != NULL && hook->HookId == 0 && hook->Type != ImGuiContextHookType_PendingRemoval_);
     g.Hooks.push_back(*hook);
     g.Hooks.back().HookId = ++g.HookIdNext;
     return g.HookIdNext;
@@ -3473,7 +3473,7 @@ void ImGui::CallContextHooks(ImGuiContext* ctx, ImGuiContextHookType hook_type)
     ImGuiContext& g = *ctx;
     for (int n = 0; n < g.Hooks.Size; n++)
         if (g.Hooks[n].Type == hook_type)
-            g.Hooks[n].Callback(&g, &g.Hooks[n]);
+            g.Hooks[n].eventCallback(&g, &g.Hooks[n]);
 }
 
 ImGuiIO& ImGui::GetIO()
@@ -7637,7 +7637,7 @@ void ImGui::SetNextItemWidth(float item_width)
 {
     ImGuiContext& g = *GImGui;
     g.NextItemData.Flags |= ImGuiNextItemDataFlags_HasWidth;
-    g.NextItemData.Width = item_width;
+    g.NextItemData.width = item_width;
 }
 
 // FIXME: Remove the == 0.0f behavior?
@@ -7680,7 +7680,7 @@ float ImGui::CalcItemWidth()
     ImGuiWindow* window = g.CurrentWindow;
     float w;
     if (g.NextItemData.Flags & ImGuiNextItemDataFlags_HasWidth)
-        w = g.NextItemData.Width;
+        w = g.NextItemData.width;
     else
         w = window->DC.ItemWidth;
     if (w < 0.0f)
@@ -11676,7 +11676,7 @@ void ImGui::DebugNodeTabBar(ImGuiTabBar* tab_bar, const char* label)
             if (SmallButton("<")) { TabBarQueueReorder(tab_bar, tab, -1); } SameLine(0, 2);
             if (SmallButton(">")) { TabBarQueueReorder(tab_bar, tab, +1); } SameLine();
             Text("%02d%c Tab 0x%08X '%s' Offset: %.1f, Width: %.1f/%.1f",
-                tab_n, (tab->ID == tab_bar->SelectedTabId) ? '*' : ' ', tab->ID, (tab->NameOffset != -1) ? tab_bar->GetTabName(tab) : "???", tab->Offset, tab->Width, tab->ContentWidth);
+                tab_n, (tab->ID == tab_bar->SelectedTabId) ? '*' : ' ', tab->ID, (tab->NameOffset != -1) ? tab_bar->GetTabName(tab) : "???", tab->Offset, tab->width, tab->ContentWidth);
             PopID();
         }
         TreePop();
