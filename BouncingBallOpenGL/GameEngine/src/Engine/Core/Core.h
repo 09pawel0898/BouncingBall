@@ -2,13 +2,24 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <iostream>
 
-#define EN_ASSERT(x) if(!(x)) __debugbreak();
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <stdint.h>
+#include <vector>
+#include <type_traits>
+#include <string>
+#include <unordered_map>
+
+#define EN_ASSERT(x) if(!(x)) __debugbreak()
 
 #define GLCall(x) GLClearError();\
     x;\
-    GLASSERT(GLLogCall(#x, __FILE__, __LINE__))
+    EN_ASSERT(GLLogCall(#x, __FILE__, __LINE__))
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this,std::placeholders::_1)
 

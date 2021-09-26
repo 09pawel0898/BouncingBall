@@ -57,7 +57,7 @@ namespace En
 		template<typename StateType>
 		inline void StateManager::RegisterState(StateName stateName)
 		{
-			EN_DEBUGMSG("%s%s%s", "[State] State ", stateName.c_str(), " registered");
+			EN_DEBUGMSG("%s%s%s", "[State] State '", stateName.c_str(), "' registered");
 			m_StateConstructors[stateName] = [this](void)
 			{
 				return State::StatePointer(new StateType(*this, m_Context));
@@ -66,8 +66,7 @@ namespace En
 
 		inline void StateManager::PushState(StateName stateName)
 		{
-
-			EN_DEBUGMSG("%s%s%s", "[State] State ", stateName.c_str(), " pushed");
+			EN_DEBUGMSG("%s%s%s", "[State] State '", stateName.c_str(), "' pushed");
 			m_PendingActions.push_back(PendingAction(Action::ADD, stateName));
 		}
 
