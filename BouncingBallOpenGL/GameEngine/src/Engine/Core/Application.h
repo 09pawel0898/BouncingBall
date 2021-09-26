@@ -18,6 +18,8 @@ namespace En
 
 	class Application
 	{
+	public:
+		static Application* m_Instance;
 	private:
 		std::shared_ptr<Window> m_Window;
 		std::shared_ptr<TextureManager> m_TextureManager;
@@ -37,7 +39,8 @@ namespace En
 
 		void Run();
 		inline double GetDT(void) const { return m_DeltaTime; }
-		inline std::unique_ptr<States::StateManager>& GetStateManager(void) { return m_StateManager; }
+		inline const std::shared_ptr<Window>& GetWindow(void) const { return m_Window; }
+		inline const std::unique_ptr<States::StateManager>& GetStateManager(void) const { return m_StateManager; }
 	};
 
 	std::shared_ptr<Application> CreateApplication();
