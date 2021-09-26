@@ -51,6 +51,7 @@ project "GameEngine"
 		defines
 		{
 			"GLEW_STATIC",
+			"EN_BUILD"
 			"WIN32"
 		}
 
