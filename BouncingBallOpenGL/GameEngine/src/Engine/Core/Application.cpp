@@ -7,6 +7,8 @@
 
 namespace En
 {
+    Application* Application::m_Instance = nullptr;
+
     void Application::OnEvent(Event& event)
     {
         EventDispatcher dispatcher(event);
@@ -25,17 +27,13 @@ namespace En
 
     Application::Application(const WindowProperties& windowProperties)
     {
-        if (m_Instance == nullptr)
-            m_Instance = this;
+        if (Application::m_Instance == nullptr)
+            Application::m_Instance = this;
 
         m_Window = Window::Create(windowProperties);
         m_TextureManager = std::make_shared<TextureManager>();
         m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
         m_StateManager = std::make_unique<States::StateManager>(States::State::Context( m_Window, m_TextureManager));
-    }
-
-    Application::~Application()
-    {
     }
 
     void Application::Run()

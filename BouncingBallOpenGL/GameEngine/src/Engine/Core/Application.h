@@ -35,7 +35,7 @@ namespace En
 		bool OnWindowClosed(WindowClosedEvent& event);
 	public:
 		explicit Application(const WindowProperties& windowProperties = WindowProperties());
-		virtual ~Application();
+		virtual ~Application() = default;
 
 		void Run();
 		inline double GetDT(void) const { return m_DeltaTime; }
