@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Core.h"
+struct GLFWwindow;
+
 #include "../Events/Event.h"
 
 namespace En

@@ -23,15 +23,14 @@ class BouncingBallApplication : public En::Application
 {
 public:
 	BouncingBallApplication()
-		:	En::Application()
+		:	En::Application(En::WindowProperties("BouncingBall",400,400))
 	{
 		GetStateManager()->RegisterState<MainMenuState>("MainMenu");
 		GetStateManager()->PushState("MainMenu");
 		GetStateManager()->PopState();
 	}
 
-	~BouncingBallApplication()
-	{}
+	~BouncingBallApplication() = default;
 };
 
 std::shared_ptr<En::Application> En::CreateApplication(void)

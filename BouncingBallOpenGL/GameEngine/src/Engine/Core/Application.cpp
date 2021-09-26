@@ -1,5 +1,4 @@
 #include "Application.h"
-#include "Window.h"
 #include "Core.h"
 #include "Debug.h"
 #include "../Events/WindowEvent.h"
@@ -20,12 +19,12 @@ namespace En
         return true;
     }
 
-    Application::Application()
+    Application::Application(const WindowProperties& windowProperties)
     {
-        m_Window = Window::Create();
+        m_Window = Window::Create(windowProperties);
         m_TextureManager = std::make_shared<TextureManager>();
         m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
-        m_StateManager = std::make_unique<States::StateManager>(States::State::Context( m_Window,                                                                        m_TextureManager));
+        m_StateManager = std::make_unique<States::StateManager>(States::State::Context( m_Window, m_TextureManager));
     }
 
     Application::~Application()

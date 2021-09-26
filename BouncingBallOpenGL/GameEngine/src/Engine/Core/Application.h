@@ -2,6 +2,8 @@
 
 #include <memory>
 
+#include "Window.h"
+
 #ifdef EN_BUILD
 #include "../States/StateManager.h"
 #include "../Resources/ResourceManager.h"
@@ -11,7 +13,6 @@
 
 namespace En
 {
-	class Window;
 	class Event;
 	class WindowClosedEvent;
 }
@@ -34,7 +35,7 @@ namespace En
 		void OnEvent(Event& event);
 		bool OnWindowClosed(WindowClosedEvent& event);
 	public:
-		Application();
+		explicit Application(const WindowProperties& windowProperties = WindowProperties());
 		virtual ~Application();
 
 		void Run();
