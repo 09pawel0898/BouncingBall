@@ -4,12 +4,9 @@
 
 #include "Window.h"
 
-#ifdef EN_BUILD
 #include "../States/StateManager.h"
 #include "../Resources/ResourceManager.h"
-#else
-#include "../Resources/ResourceIdentifiers.h"
-#endif
+
 
 namespace En
 {

@@ -1,11 +1,7 @@
 #pragma once
 #include <memory>
 
-#ifdef EN_BUILD
 #include "../Resources/ResourceManager.h"
-#else
-#include "../Resources/ResourceIdentifiers.h"
-#endif
 
 namespace En
 {
