@@ -64,29 +64,31 @@ namespace En
 
         glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
 
-        // setting shader
-        Shader shader("res/shaders/sprite.glsl");
-        shader.Bind();
-        shader.SetUniform1i("u_Texture", 0);
-        shader.SetUniformMat4f("u_MVP", proj);
+        //// setting shader
+        //Shader shader("res/shaders/sprite.glsl");
+       // shader.Bind();
+        //shader.SetUniform1i("u_Texture", 0);
+       // shader.SetUniformMat4f("u_MVP", proj);
         // setting uniform parameter
 
-        Texture texture("res/textures/texture.png");
-        texture.Bind(0);
+        GetTextureManager()->LoadResource("Test", "res/textures/texture.png");
+        GetTextureManager()->GetResource("Test");
 
-        Renderer::Instance()->EnableBlending();
+        Sprite sprite(GetTextureManager()->GetResource("Test"));
+        sprite.SetPosition({ 100,100 });
+
+        Renderer::Init(m_Window->GetWidth(), m_Window->GetHeight());
+        Renderer::EnableBlending();
 
         while (m_Running)
         {
             auto tFrameStart = std::chrono::high_resolution_clock::now();
-            Renderer::Instance()->Clear();
+            Renderer::Clear();
 
             m_StateManager->OnUpdate(m_DeltaTime);
             m_StateManager->OnRender();
 
-            Renderer::Instance()->Draw(vertexArray, indexBuffer, shader);
-
-
+            Renderer::Draw(sprite);
 
             auto tFrameEnd = std::chrono::high_resolution_clock::now();
             m_DeltaTime = std::chrono::duration<double, std::milli>

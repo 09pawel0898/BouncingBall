@@ -33,9 +33,9 @@ namespace En
 		Sprite& operator=(Sprite&& rhs) noexcept;
 
 	private:
-		static SpriteRendererData s_RendererData;
-		static SpriteRendererData& GetRendererData(void) { return s_RendererData; }
-		inline void BindTexture(uint8_t texSlot) const { m_Texture->Bind(0); }
+		static std::unique_ptr<SpriteRendererData> s_RendererData;
+		static std::unique_ptr<SpriteRendererData>& GetRendererData(void) { return s_RendererData; }
+		inline void BindTexture(uint8_t texSlot) const { m_Texture->Bind(texSlot); }
 		
 		friend class Renderer;
 	

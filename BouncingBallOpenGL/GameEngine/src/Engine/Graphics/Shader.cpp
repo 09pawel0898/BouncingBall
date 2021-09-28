@@ -1,6 +1,5 @@
 #include "Shader.h"
 
-
 Shader::Shader(const std::string& filePath)
 	:	m_FilePath(filePath),
 		m_RendererID(0)
@@ -48,17 +47,17 @@ int Shader::GetUniformLocation(const std::string& uniformName) const
 
 Shader::ShaderID Shader::CreateShader(const std::string& vertexShader, const std::string& fragmentShader)
 {
-    ShaderID program = glCreateProgram();
+    GLCall(ShaderID program = glCreateProgram());
     CompShaderID vertShader = CompileShader(vertexShader, GL_VERTEX_SHADER);
     CompShaderID fragShader = CompileShader(fragmentShader, GL_FRAGMENT_SHADER);
 
-    glAttachShader(program, vertShader);
-    glAttachShader(program, fragShader);
-    glLinkProgram(program);
-    glValidateProgram(program);
-
-    glDeleteShader(vertShader);
-    glDeleteShader(fragShader);
+    GLCall(glAttachShader(program, vertShader));
+    GLCall(glAttachShader(program, fragShader));
+    GLCall(glLinkProgram(program));
+    GLCall(glValidateProgram(program));
+          
+    GLCall(glDeleteShader(vertShader));
+    GLCall(glDeleteShader(fragShader));
 
     return program;
 }

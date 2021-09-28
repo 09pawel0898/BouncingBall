@@ -1,23 +1,16 @@
 #include "Sprite.h"
 
 #include "Texture.h"
+#include "IndexBuffer.h"
 #include "Renderer.h"
 #include "VertexArray.h"
+
 #include "Shader.h"
+#include "RendererData.h"
 
 namespace En
 {
-	struct SpriteRendererData
-	{
-		std::unique_ptr<Shader> shader;
-		std::unique_ptr<VertexArray> vertexArray;
-		SpriteRendererData()
-			:	shader(std::make_unique<Shader>("res/shaders/sprite.glsl")),
-				vertexArray(std::make_unique<VertexArray>())
-		{}
-	};
-
-	SpriteRendererData Sprite::s_RendererData = SpriteRendererData();
+	std::unique_ptr<SpriteRendererData> Sprite::s_RendererData = nullptr;
 
 	Sprite::Sprite()
 		:	m_Position({ 0,0 }),
