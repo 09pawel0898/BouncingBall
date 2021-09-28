@@ -67,4 +67,11 @@ namespace En
 		}
 		return *this;
 	}
+	
+	void Sprite::SetRotation(float rot)
+	{
+		m_Rotation = (float)fmod(rot, 360);
+		if (m_Rotation < 0)
+			m_Rotation += 360.0f;
+	}
 }

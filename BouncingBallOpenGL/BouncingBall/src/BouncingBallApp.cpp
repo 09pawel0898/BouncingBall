@@ -47,11 +47,11 @@ public:
 		GetStateManager()->PushState("MainMenu");
 
 		GetTextureManager()->LoadResource("Test", "res/textures/texture.png");
-		//GetTextureManager()->GetResource("Test").Bind(
+		GetTextureManager()->GetResource("Test");
+
+		//En::Sprite spr(GetTextureManager()->GetResource("Test"));
 
 
-		En::Sprite sprite;
-	
 	}
 
 	~BouncingBallApplication() = default;
