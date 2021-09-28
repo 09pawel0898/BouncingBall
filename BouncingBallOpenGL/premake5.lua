@@ -101,6 +101,7 @@ project "BouncingBall"
 	includedirs
 	{
 		"%{prj.name}/../GameEngine/src",
+		"%{prj.name}/src/vendor"
 	}
 
 	libdirs

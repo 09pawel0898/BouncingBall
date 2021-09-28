@@ -20,10 +20,15 @@ namespace En
 	{
 	public:
 		static Application* m_Instance;
+
+		using WindwPtr = std::shared_ptr<Window>;
+		using TextureManagerPtr = std::shared_ptr<TextureManager>;
+		using StateManagerPtr = std::unique_ptr<States::StateManager>;
+
 	private:
-		std::shared_ptr<Window> m_Window;
-		std::shared_ptr<TextureManager> m_TextureManager;
-		std::unique_ptr<States::StateManager> m_StateManager;
+		WindwPtr m_Window;
+		TextureManagerPtr m_TextureManager;
+		StateManagerPtr m_StateManager;
 
 		bool m_Running = true;
 		double m_DeltaTime;
@@ -39,8 +44,9 @@ namespace En
 
 		void Run();
 		inline double GetDT(void) const { return m_DeltaTime; }
-		inline const std::shared_ptr<Window>& GetWindow(void) const { return m_Window; }
-		inline const std::unique_ptr<States::StateManager>& GetStateManager(void) const { return m_StateManager; }
+		inline const WindwPtr& GetWindow(void) const { return m_Window; }
+		inline const StateManagerPtr& GetStateManager(void) const{ return m_StateManager; }
+		inline const TextureManagerPtr& GetTextureManager(void) const{ return m_TextureManager; }
 	};
 
 	std::shared_ptr<Application> CreateApplication();

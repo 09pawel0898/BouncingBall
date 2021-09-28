@@ -41,10 +41,13 @@ class BouncingBallApplication : public En::Application
 {
 public:
 	BouncingBallApplication()
-		:	En::Application(En::WindowProperties("BouncingBall",400,400))
+		:	En::Application(En::WindowProperties("BouncingBall",640,480))
 	{
 		GetStateManager()->RegisterState<MainMenuState>("MainMenu");
 		GetStateManager()->PushState("MainMenu");
+
+		//GetTextureManager()->InsertResource()
+
 	}
 
 	~BouncingBallApplication() = default;

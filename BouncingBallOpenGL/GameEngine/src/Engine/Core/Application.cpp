@@ -38,17 +38,61 @@ namespace En
 
     void Application::Run()
     {
+
+        std::vector<float> positions = { -0.5f, -0.5f, 0.0f, 0.0f,
+                                     0.5f, -0.5f, 1.0f, 0.0f,
+                                     0.5f,  0.5f, 1.0f, 1.0f,
+                                    -0.5f,  0.5f, 0.0f, 1.0f };
+
+        std::vector<uint32_t> indices = { 0,1,2,
+                                           2,3,0 };
+
+        VertexArray vertexArray;
+
+        // specifying buffer
+        VertexBuffer vertexBuffer(positions, 4 * 4 * sizeof(float));
+
+        // specifying layout
+        VertexBufferLayout layout;
+        layout.Push<float>(2);
+        layout.Push<float>(2);
+        vertexArray.AddBuffer(vertexBuffer, layout);
+
+        //std::cout << std::is_same<uint32_t, uint32_t>::value;
+        IndexBuffer indexBuffer(indices);
+
+        glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+
+        // setting shader
+        Shader shader("res/shaders/basic.shader");
+        shader.Bind();
+        shader.SetUniform1i("u_Texture", 0);
+        shader.SetUniformMat4f("u_MVP", proj);
+        // setting uniform parameter
+
+        Texture texture("res/textures/texture.png");
+        texture.Bind(0);
+
+        Renderer renderer;
+        renderer.EnableBlending();
+
         while (m_Running)
         {
             auto tFrameStart = std::chrono::high_resolution_clock::now();
-            m_Window->OnUpdate();
+            renderer.Clear();
 
             m_StateManager->OnUpdate(m_DeltaTime);
             m_StateManager->OnRender();
 
+            renderer.Draw(vertexArray, indexBuffer, shader);
+
+
+
             auto tFrameEnd = std::chrono::high_resolution_clock::now();
             m_DeltaTime = std::chrono::duration<double, std::milli>
                 (tFrameEnd - tFrameStart).count();
+
+            m_Window->OnUpdate();
         }
     }
 }
