@@ -9,6 +9,8 @@ class Texture;
 
 namespace En
 {
+	struct SpriteRendererData;
+
 	class Sprite
 	{
 		using TexturePtr = std::shared_ptr<Texture>;
@@ -31,7 +33,10 @@ namespace En
 		Sprite& operator=(Sprite&& rhs) noexcept;
 
 	private:
-		inline void BindTexture(uint8_t texSlot) const { m_Texture->Bind(0);}
+		static SpriteRendererData s_RendererData;
+		static SpriteRendererData& GetRendererData(void) { return s_RendererData; }
+		inline void BindTexture(uint8_t texSlot) const { m_Texture->Bind(0); }
+		
 		friend class Renderer;
 	
 	public:

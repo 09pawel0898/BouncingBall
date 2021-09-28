@@ -65,7 +65,7 @@ namespace En
         glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
 
         // setting shader
-        Shader shader("res/shaders/basic.shader");
+        Shader shader("res/shaders/sprite.glsl");
         shader.Bind();
         shader.SetUniform1i("u_Texture", 0);
         shader.SetUniformMat4f("u_MVP", proj);
@@ -74,18 +74,17 @@ namespace En
         Texture texture("res/textures/texture.png");
         texture.Bind(0);
 
-        Renderer renderer;
-        renderer.EnableBlending();
+        Renderer::Instance()->EnableBlending();
 
         while (m_Running)
         {
             auto tFrameStart = std::chrono::high_resolution_clock::now();
-            renderer.Clear();
+            Renderer::Instance()->Clear();
 
             m_StateManager->OnUpdate(m_DeltaTime);
             m_StateManager->OnRender();
 
-            renderer.Draw(vertexArray, indexBuffer, shader);
+            Renderer::Instance()->Draw(vertexArray, indexBuffer, shader);
 
 
 
