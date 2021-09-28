@@ -46,8 +46,12 @@ public:
 		GetStateManager()->RegisterState<MainMenuState>("MainMenu");
 		GetStateManager()->PushState("MainMenu");
 
+		GetTextureManager()->LoadResource("Test", "res/textures/texture.png");
+		//GetTextureManager()->GetResource("Test").Bind(
+
+
 		En::Sprite sprite;
-		//En::Application::TextureManagerPtr ptr = GetTextureManager()->
+	
 	}
 
 	~BouncingBallApplication() = default;

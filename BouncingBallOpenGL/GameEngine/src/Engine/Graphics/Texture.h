@@ -1,34 +1,25 @@
 #pragma once
 
-#include "Renderer.h"
+#include <string>
 
 class Texture
 {
 private:
-	uint32_t m_RendererID;
+	uint32_t m_RendererID = 0;
 	std::string m_FilePath;
 	unsigned char* m_LocalBuffer;
 	int m_Width = 0, m_Height = 0, m_BPP = 0;
 
 public:
+	Texture();
 	explicit Texture(const std::string& path);
 	~Texture();
 
-	inline void Bind(uint32_t slot = 0) const;
-	inline void Unbind() const;
+	bool LoadFromFile(const std::string& path);
+	void Bind(uint32_t slot = 0) const;
+	void Unbind(void) const;
 
-	inline uint16_t GetWidth() const  { return m_Width;  }
-	inline uint16_t GetHeight() const { return m_Height; }
+	inline uint16_t GetWidth(void) const  { return m_Width;  }
+	inline uint16_t GetHeight(void) const { return m_Height; }
 
 };
-
-inline void Texture::Bind(uint32_t slot) const
-{
-	GLCall(glActiveTexture(GL_TEXTURE0 + slot));
-	GLCall(glBindTexture(GL_TEXTURE_2D, m_RendererID));
-}
-
-inline void Texture::Unbind() const
-{
-	GLCall(glBindTexture(GL_TEXTURE_2D, 0));
-}

@@ -2,7 +2,8 @@
 #include "Core.h"
 #include "Debug.h"
 #include "../Events/WindowEvent.h"
-
+#include "../Graphics/Renderer.h"
+#include "../Graphics/Texture.h"
 #include <chrono>
 
 namespace En

@@ -6,7 +6,7 @@ void ResourceManager<ResType, ResID>::LoadResource(ResID id, const std::string &
 
 	//all resources classes(texture,font..) must provide loadFromFile() function
 	
-	if (resource->loadFromFile(filename) == false)
+	if (resource->LoadFromFile(filename) == false)
 		exit(EXIT_FAILURE);
 
 	InsertResource(id, std::move(resource));

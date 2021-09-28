@@ -22,9 +22,6 @@ public:
 
 #include "ResourceManager.inl"
 
-#ifdef EN_BUILD
 #include "../Graphics/Texture.h"
 using TextureManager = ResourceManager<Texture, std::string>;
-#else
-#include "ResourceIdentifiers.h"
-#endif
+

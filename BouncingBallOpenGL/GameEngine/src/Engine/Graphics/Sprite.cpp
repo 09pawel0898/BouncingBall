@@ -1,6 +1,7 @@
 #include "Sprite.h"
 
 #include "Texture.h"
+#include "Renderer.h"
 
 namespace En
 {
@@ -33,9 +34,11 @@ namespace En
 	}
 
 	Sprite::Sprite(Sprite&& sprite) noexcept
-		:	m_Texture(nullptr)
+		:	m_Texture(std::move(sprite.m_Texture)),
+			m_Position(std::move(sprite.m_Position)),
+			m_Size(std::move(sprite.m_Size)),
+			m_Rotation(sprite.m_Rotation)
 	{
-		*this = std::move(sprite);
 		std::cout << "move (Sprite&&) ctor called\n";
 	}
 
@@ -55,7 +58,13 @@ namespace En
 	Sprite& Sprite::operator=(Sprite&& rhs) noexcept
 	{
 		std::cout << "move (Sprite&&) operator called\n";
-		*this = std::move(rhs);
+		if (this != &rhs)
+		{
+			m_Texture = std::move(rhs.m_Texture);
+			m_Position = std::move(rhs.m_Position);
+			m_Size = std::move(rhs.m_Size);
+			m_Rotation = rhs.m_Rotation;
+		}
 		return *this;
 	}
 }
