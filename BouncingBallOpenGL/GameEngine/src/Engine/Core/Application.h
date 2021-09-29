@@ -28,7 +28,7 @@ namespace En
 		StateManagerPtr m_StateManager;
 
 		bool m_Running = true;
-		double m_DeltaTime;
+		double m_DeltaTime = 0.0;
 
 		Application(const Application& app) = delete;
 		Application& operator =(const Application& app) = delete;

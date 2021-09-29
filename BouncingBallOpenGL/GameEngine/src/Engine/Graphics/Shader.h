@@ -22,10 +22,10 @@ public:
 
 	inline void Bind() const;
 	inline void Unbind() const;
-	void SetUniform1i(const std::string& name, int value);
-	void SetUniform1f(const std::string& name, float value);
-	void SetUniform4f(const std::string& name, const Uniform4f& uniform);
-	void SetUniformMat4f(const std::string& name, const glm::mat4& uniform);
+	void SetUniform1i(const std::string& name, int value) const;
+	void SetUniform1f(const std::string& name, float value) const;
+	void SetUniform4f(const std::string& name, const Uniform4f& uniform) const;
+	void SetUniformMat4f(const std::string& name, const glm::mat4& uniform) const;
 private:
 	int GetUniformLocation(const std::string& uniformName) const;
 

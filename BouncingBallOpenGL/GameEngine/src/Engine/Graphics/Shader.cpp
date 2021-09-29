@@ -13,22 +13,22 @@ Shader::~Shader()
     GLCall(glDeleteProgram(m_RendererID));
 }
 
-void Shader::SetUniform1i(const std::string& name, int value)
+void Shader::SetUniform1i(const std::string& name, int value) const
 {
     GLCall(glUniform1i(GetUniformLocation(name), value));
 }
 
-void Shader::SetUniform1f(const std::string& name, float value)
+void Shader::SetUniform1f(const std::string& name, float value) const
 {
     GLCall(glUniform1f(GetUniformLocation(name), value));
 }
 
-void Shader::SetUniform4f(const std::string& name, const Uniform4f& uniform)
+void Shader::SetUniform4f(const std::string& name, const Uniform4f& uniform) const
 {
     GLCall(glUniform4f(GetUniformLocation(name), uniform.v0,uniform.v1,uniform.v2,uniform.v3));
 }
 
-void Shader::SetUniformMat4f(const std::string& name, const glm::mat4& matrix)
+void Shader::SetUniformMat4f(const std::string& name, const glm::mat4& matrix) const
 {
     GLCall(glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]));
 }

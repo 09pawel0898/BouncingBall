@@ -20,7 +20,7 @@ namespace En
 		inline static void Clear(void);
 
 		template <typename IBDataType>
-		static void Draw(const VertexArray& vertexArray, const IndexBuffer<IBDataType>& indexBuffer, const Shader& shader);
+		static void Draw(const VertexArray& vertexArray, const IndexBuffer<IBDataType>& indexBuffer, const Shader& shader, const glm::mat4& mvp);
 		static void Draw(const Sprite& sprite);
 
 		static void SetViewport(uint16_t width, uint16_t height);
@@ -35,9 +35,10 @@ namespace En
 	}
 
 	template <typename IBDataType>
-	void Renderer::Draw(const VertexArray& vertexArray, const IndexBuffer<IBDataType>& indexBuffer, const Shader& shader)
+	void Renderer::Draw(const VertexArray& vertexArray, const IndexBuffer<IBDataType>& indexBuffer, const Shader& shader, const glm::mat4& mvp)
 	{
 		shader.Bind();
+		shader.SetUniformMat4f("u_MVP", mvp);
 		vertexArray.Bind();
 		indexBuffer.Bind();
 		GLCall(glDrawElements(GL_TRIANGLES, indexBuffer.GetCount(), indexBuffer.GetDataType(), nullptr));

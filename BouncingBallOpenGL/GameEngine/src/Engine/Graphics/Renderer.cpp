@@ -19,24 +19,24 @@ namespace En
 	{
 		auto& spriteRendererData = Sprite::GetRendererData();
 		spriteRendererData = std::make_unique<SpriteRendererData>();
+		spriteRendererData->shader->Bind();
+		spriteRendererData->shader->SetUniform1i("u_Texture", 0);
 	}
 
 	void Renderer::Draw(const Sprite& sprite)
 	{
-		glm::mat4 modelMat =	glm::translate(glm::mat4(1.0f), glm::vec3(sprite.GetPosition(), 0.0f)) *
-								glm::rotate(glm::mat4(1.0f), glm::radians(sprite.GetRotation()), glm::vec3(0.0f, 0.0f, 1.0f)) *
-								glm::scale(glm::mat4(1.0f), glm::vec3(sprite.GetSize(), 1.0f));
+		glm::mat4 modelMat = glm::translate(glm::mat4(1.0f), glm::vec3(sprite.GetPosition(), 0.0f)) *
+							 glm::rotate(glm::mat4(1.0f), glm::radians(sprite.GetRotation()), glm::vec3(0.0f, 0.0f, 1.0f)) *
+							 glm::scale(glm::mat4(1.0f), glm::vec3(sprite.GetSize(), 1.0f));
 
 		auto& spriteRendererData = Sprite::GetRendererData();
-		spriteRendererData->shader->Bind();
-		spriteRendererData->shader->SetUniform1i("u_Texture", 0);
-		spriteRendererData->shader->SetUniformMat4f("u_MVP", modelMat * s_ProjectionMat);
 		sprite.BindTexture(0);
 
 		Draw(	*spriteRendererData->vertexArray,
 				*spriteRendererData->indexBuffer,
-				*spriteRendererData->shader);
-
+				*spriteRendererData->shader,
+				s_ProjectionMat * modelMat
+			);
 	}
 
 	void Renderer::SetViewport(uint16_t width, uint16_t height)

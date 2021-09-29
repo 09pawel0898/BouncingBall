@@ -19,11 +19,12 @@ namespace En
 			m_Texture(nullptr)
 	{}
 
-	Sprite::Sprite(TexturePtr texture, const glm::vec2& pos, const glm::vec2& size, float rotAngle)
-		:	m_Position(pos),
-			m_Size(size),
-			m_Rotation(rotAngle),
-			m_Texture(std::move(texture))
+	Sprite::Sprite(TexturePtr texture, const glm::vec2& pos, float rotAngle)
+		:	m_Texture(std::move(texture)),
+			m_Position(pos),
+			m_Size(m_Texture->GetWidth(),m_Texture->GetHeight()),
+			m_Rotation(rotAngle)
+			
 	{}
 
 	Sprite::Sprite(const Sprite& sprite)
