@@ -21,7 +21,7 @@
     x;\
     EN_ASSERT(GLLogCall(#x, __FILE__, __LINE__))
 
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this,std::placeholders::_1)
+#define BIND_APP_EVENT_FN(x) std::bind(&Application::x, this,std::placeholders::_1)
 
 inline void GLClearError() {
     while (glGetError() != GL_NO_ERROR) {};

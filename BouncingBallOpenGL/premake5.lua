@@ -101,6 +101,8 @@ project "BouncingBall"
 	includedirs
 	{
 		"%{prj.name}/../GameEngine/src",
+		"%{prj.name}/../GameEngine/dependencies/GLEW/include",
+		"%{prj.name}/../GameEngine/dependencies/GLFW/include",
 		"%{prj.name}/src/vendor"
 	}
 

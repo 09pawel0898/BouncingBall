@@ -5,9 +5,9 @@ extern std::shared_ptr<En::Application>
 	En::CreateApplication(void);
 
 
-int main(int arc, char** argv)
+int main(void)
 {
-	auto app = En::CreateApplication();
-	app->Run();
+	En::Application::s_Instance = En::CreateApplication();
+	En::Application::s_Instance->Run();
 	return 0;
 }

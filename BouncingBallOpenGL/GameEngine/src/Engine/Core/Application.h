@@ -7,6 +7,7 @@
 #include "../States/StateManager.h"
 #include "../Resources/ResourceManager.h"
 
+int main(void);
 
 namespace En
 {
@@ -15,12 +16,16 @@ namespace En
 
 	class Application
 	{
-	public:
-		static Application* m_Instance;
+	private:
+		friend int ::main(void);
+		static std::shared_ptr<Application> s_Instance;
 
 		using WindwPtr = std::shared_ptr<Window>;
 		using TextureManagerPtr = std::shared_ptr<TextureManager>;
 		using StateManagerPtr = std::unique_ptr<States::StateManager>;
+
+	public:
+		static std::shared_ptr<Application>& GetInstance(void) { return s_Instance; };
 
 	private:
 		WindwPtr m_Window;
