@@ -1,3 +1,5 @@
+#include "../Core/Debug.h"
+
 template <typename ResType, typename ResID>
 void ResourceManager<ResType, ResID>::LoadResource(ResID id, const std::string& filename)
 {
@@ -32,6 +34,11 @@ const std::shared_ptr<ResType>& ResourceManager<ResType, ResID>::GetResource(Res
 template <typename ResType, typename ResID>
 void ResourceManager<ResType, ResID>::InsertResource(ResID id, std::shared_ptr<ResType> resource)
 {
+	if (m_Map.find(id) != m_Map.end())
+	{
+		EN_DEBUGMSG("%s", "[Resource] Attempting to add a resource that is already owned");
+		return;
+	}
 	auto newResource = m_Map.insert(std::make_pair(id, std::move(resource)));
 	assert(newResource.second);
 }

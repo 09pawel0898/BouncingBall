@@ -18,7 +18,10 @@ void MainMenuState::OnRender(void) const
 	{
 		En::Renderer::Draw(m_TransitionAnim[animFrame++]);
 		if (animFrame == 6)
+		{
+			animFrame = 0;
 			App->GetStateManager()->PushState("Gameplay");
+		}
 	}
 	else
 		En::Renderer::Draw(m_DarkTheme);
@@ -43,6 +46,11 @@ bool MainMenuState::OnEvent(En::Event& event)
 	dispatcher.Dipatch<En::MouseButtonPressedEvent>(BIND_EVENT_FN(MainMenuState::OnMouseButtonPressed));
 
 	return true;
+}
+
+void MainMenuState::OnAwake(void)
+{
+	m_GameStarted = false;
 }
 
 bool MainMenuState::OnMouseButtonPressed(En::MouseButtonPressedEvent& event)

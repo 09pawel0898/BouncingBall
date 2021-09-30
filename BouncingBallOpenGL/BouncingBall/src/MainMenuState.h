@@ -23,6 +23,7 @@ public:
 	virtual void OnRender(void) const override;
 	virtual bool OnUpdate(double deltaTime) override;
 	virtual bool OnEvent(En::Event& event) override;
+	virtual void OnAwake(void) override;
 
 private:
 	bool OnMouseButtonPressed(En::MouseButtonPressedEvent& event);

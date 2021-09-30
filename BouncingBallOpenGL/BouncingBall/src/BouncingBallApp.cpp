@@ -13,7 +13,7 @@ public:
 	BouncingBallApplication()
 		:	En::Application(En::WindowProperties("BouncingBall",450,600))
 	{
-		SetFPSLimit(60);
+		SetFPSLimit(120);
 		GetStateManager()->RegisterState<MainMenuState>("MainMenu");
 		GetStateManager()->RegisterState<GameplayState>("Gameplay");
 		GetStateManager()->PushState("MainMenu");
