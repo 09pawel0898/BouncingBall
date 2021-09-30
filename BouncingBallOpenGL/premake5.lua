@@ -51,7 +51,7 @@ project "GameEngine"
 		defines
 		{
 			"GLEW_STATIC",
-			"EN_BUILD"
+			"EN_BUILD",
 			"WIN32"
 		}
 
@@ -101,9 +101,9 @@ project "BouncingBall"
 	includedirs
 	{
 		"%{prj.name}/../GameEngine/src",
+		"%{prj.name}/../GameEngine/src/vendor",
 		"%{prj.name}/../GameEngine/dependencies/GLEW/include",
-		"%{prj.name}/../GameEngine/dependencies/GLFW/include",
-		"%{prj.name}/src/vendor"
+		"%{prj.name}/../GameEngine/dependencies/GLFW/include"
 	}
 
 	libdirs
