@@ -5,7 +5,7 @@
 
 #include "MainMenuState.h"
 #include "GameplayState.h"
-
+#include "GameLostState.h"
 
 class BouncingBallApplication : public En::Application
 {
@@ -16,6 +16,7 @@ public:
 		SetFPSLimit(120);
 		GetStateManager()->RegisterState<MainMenuState>("MainMenu");
 		GetStateManager()->RegisterState<GameplayState>("Gameplay");
+		GetStateManager()->RegisterState<GameLostState>("GameLost");
 		GetStateManager()->PushState("MainMenu");
 	}
 

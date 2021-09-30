@@ -64,13 +64,9 @@ void MainMenuState::InitTextures(void)
 {
 	const auto& texManager = App->GetTextureManager();
 	texManager->LoadResource("background", "res/textures/bgpattern.png");
-	//texManager->LoadResource("ball", "res/textures/ball.png");
 	texManager->LoadResource("transAnim0", "res/textures/0.png");
-	//texManager->LoadResource("backButton", "res/textures/buttonback.png");
 	texManager->LoadResource("playButton", "res/textures/playbutton.png");
 	texManager->LoadResource("logo", "res/textures/logoball.png");
-	//texManager->LoadResource("tile", "res/textures/tile.png");
-	//texManager->LoadResource("ballicon", "res/textures/ballicon.png");
 
 	for (unsigned int i = 0; i < 6; i++)
 	{

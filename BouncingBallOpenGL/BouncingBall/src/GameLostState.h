@@ -1,27 +1,23 @@
 #pragma once
 
 #include <Engine.h>
-#include "Ball.h"
 
-class GameplayState : public En::States::State
+class GameLostState : public En::States::State
 {
 private:
 	std::shared_ptr<En::Application>& App = En::Application::GetInstance();
 
 private:
-	En::Sprite m_Background, m_BackButton;
-	Ball m_Ball;
-	unsigned m_FrameCounter, m_LastJumpFrame;
-	bool m_GameLost;
+	En::Sprite m_Background, m_BackButton, m_RestartButton;
+	En::Sprite m_LeftBallIcon, m_RightBallIcon, m_RestartText;
 
 public:
-	GameplayState(En::States::StateManager& stateManager, Context context);
-	virtual ~GameplayState() = default;
+	GameLostState(En::States::StateManager& stateManager, Context context);
+	virtual ~GameLostState() = default;
 
 	virtual void OnRender(void) const override;
 	virtual bool OnUpdate(double deltaTime) override;
 	virtual bool OnEvent(En::Event& event) override;
-	virtual void OnAwake(void) override;
 
 private:
 	bool OnMouseButtonPressed(En::MouseButtonPressedEvent& event);
@@ -29,6 +25,6 @@ private:
 private:
 	void InitTextures(void);
 	void InitSprites(void);
-	void InitBall(void);
 	void GoToMainMenu(void);
+	void RestartGame(void);
 };

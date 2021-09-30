@@ -42,8 +42,10 @@ bool GameplayState::OnUpdate(double deltaTime)
 	*/
 	
 	if (m_Ball.GetPosition().y - 1000 > App->GetWindow()->GetHeight())
+	{
 		m_GameLost = true;
-
+		App->GetStateManager()->PushState("GameLost");
+	}
 	/* 
 	this->COUNTER.setPosition(this->window->getSize().x / 2.0f - this->shift, 138);
 	this->COUNTER.setString(this->jc);
@@ -63,6 +65,12 @@ bool GameplayState::OnEvent(En::Event& event)
 	dispatcher.Dipatch<En::MouseButtonPressedEvent>(BIND_EVENT_FN(GameplayState::OnMouseButtonPressed));
 
 	return true;
+}
+
+void GameplayState::OnAwake(void)
+{
+	m_GameLost = false;
+	m_Ball.Reset();
 }
 
 bool GameplayState::OnMouseButtonPressed(En::MouseButtonPressedEvent& event)
