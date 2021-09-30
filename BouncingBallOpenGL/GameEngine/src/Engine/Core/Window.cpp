@@ -32,7 +32,6 @@ namespace En
 		glewInit();
 		
 		glfwSetWindowUserPointer(m_WindowHandle, &m_Properties);
-		SetVSync(false);
 
 		glfwSetWindowCloseCallback(m_WindowHandle, [](GLFWwindow* window)
 		{

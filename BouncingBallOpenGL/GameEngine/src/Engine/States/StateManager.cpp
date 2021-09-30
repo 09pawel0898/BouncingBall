@@ -30,6 +30,7 @@ namespace En
 					m_States.push(CreateState(pendingAction.m_StateName));
 				else if(pendingAction.m_Action == Action::DELETE)
 					m_States.pop();
+				m_States.top()->OnAwake();
 			}
 			m_PendingActions.clear();
 		}

@@ -25,7 +25,9 @@ namespace En
 
 	void Renderer::Draw(const Sprite& sprite)
 	{
-		glm::mat4 modelMat = glm::translate(glm::mat4(1.0f), glm::vec3(sprite.GetPosition(), 0.0f)) *
+		auto spritePos = sprite.GetPosition() + (sprite.GetGenericSize() / 2.0f) - sprite.GetOrigin();
+
+		glm::mat4 modelMat = glm::translate(glm::mat4(1.0f), glm::vec3(spritePos, 0.0f)) *
 							 glm::rotate(glm::mat4(1.0f), glm::radians(sprite.GetRotation()), glm::vec3(0.0f, 0.0f, 1.0f)) *
 							 glm::scale(glm::mat4(1.0f), glm::vec3(sprite.GetSize(), 1.0f));
 

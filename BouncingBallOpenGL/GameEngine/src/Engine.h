@@ -10,5 +10,6 @@
 #include "Engine/Graphics/Texture.h"
 #include "Engine/Graphics/Sprite.h"
 #include "Engine/Graphics/Renderer.h"
+#include "Engine/Core/Input.h"
 
 #define BIND_EVENT_FN(x) std::bind(&x, this,std::placeholders::_1)

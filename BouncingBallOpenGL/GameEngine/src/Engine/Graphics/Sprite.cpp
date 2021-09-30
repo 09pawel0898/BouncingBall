@@ -16,14 +16,16 @@ namespace En
 		:	m_Position({ 0,0 }),
 			m_Size({ 0,0 }),
 			m_Rotation(0.0f),
-			m_Texture(nullptr)
+			m_Texture(nullptr),
+			m_GenericSize(m_Size)
 	{}
 
 	Sprite::Sprite(TexturePtr texture, const glm::vec2& pos, float rotAngle)
 		:	m_Texture(std::move(texture)),
 			m_Position(pos),
 			m_Size(m_Texture->GetWidth(),m_Texture->GetHeight()),
-			m_Rotation(rotAngle)
+			m_Rotation(rotAngle),
+			m_GenericSize(m_Size)
 			
 	{}
 
@@ -31,14 +33,16 @@ namespace En
 		:	m_Position(sprite.m_Position),
 			m_Size(sprite.m_Size),
 			m_Rotation(sprite.m_Rotation),
-			m_Texture(sprite.m_Texture)
+			m_Texture(sprite.m_Texture),
+			m_GenericSize(m_Size)
 	{}
 
 	Sprite::Sprite(Sprite&& sprite) noexcept
 		:	m_Texture(std::move(sprite.m_Texture)),
 			m_Position(std::move(sprite.m_Position)),
 			m_Size(std::move(sprite.m_Size)),
-			m_Rotation(sprite.m_Rotation)
+			m_Rotation(sprite.m_Rotation),
+			m_GenericSize(m_Size)
 	{}
 
 	Sprite& Sprite::operator=(const Sprite& rhs)
@@ -46,7 +50,7 @@ namespace En
 		if (this != &rhs)
 		{
 			m_Position = rhs.m_Position;
-			m_Size = rhs.m_Size;
+			m_Size = m_GenericSize = rhs.m_Size;
 			m_Rotation = rhs.m_Rotation;
 			m_Texture = rhs.m_Texture;
 		}
@@ -59,7 +63,7 @@ namespace En
 		{
 			m_Texture = std::move(rhs.m_Texture);
 			m_Position = std::move(rhs.m_Position);
-			m_Size = std::move(rhs.m_Size);
+			m_Size = m_GenericSize = rhs.m_Size;
 			m_Rotation = rhs.m_Rotation;
 		}
 		return *this;

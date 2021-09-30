@@ -2,16 +2,20 @@
 
 #include <Engine.h>
 #include <Engine/Core/EntryPoint.h>
+
 #include "MainMenuState.h"
-#include <iostream>
+#include "GameplayState.h"
+
 
 class BouncingBallApplication : public En::Application
 {
 public:
 	BouncingBallApplication()
-		:	En::Application(En::WindowProperties("BouncingBall",640,480))
+		:	En::Application(En::WindowProperties("BouncingBall",450,600))
 	{
+		SetFPSLimit(60);
 		GetStateManager()->RegisterState<MainMenuState>("MainMenu");
+		GetStateManager()->RegisterState<GameplayState>("Gameplay");
 		GetStateManager()->PushState("MainMenu");
 	}
 

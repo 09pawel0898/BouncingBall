@@ -46,6 +46,7 @@ namespace En
 			virtual void OnRender(void) const = 0;
 			virtual bool OnUpdate(double deltaTime) = 0;
 			virtual bool OnEvent(Event& event) = 0;
+			virtual void OnAwake(void) {}
 		};
 
 	}
