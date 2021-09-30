@@ -34,6 +34,8 @@ namespace En
 
 		bool m_Running = true;
 		double m_DeltaTime = 0.0;
+		double m_FPS = 0.0;
+		unsigned m_FPSLIMIT = 9999;
 
 		Application(const Application& app) = delete;
 		Application& operator =(const Application& app) = delete;
@@ -45,7 +47,9 @@ namespace En
 		virtual ~Application() = default;
 
 		void Run();
+		inline void SetFPSLimit(unsigned fpsLimit) { m_FPSLIMIT = fpsLimit; }
 		inline double GetDT(void) const { return m_DeltaTime; }
+		inline double GetFPS(void) const { return m_FPS; }
 		inline const WindwPtr& GetWindow(void) const { return m_Window; }
 		inline const StateManagerPtr& GetStateManager(void) const{ return m_StateManager; }
 		inline const TextureManagerPtr& GetTextureManager(void) const{ return m_TextureManager; }

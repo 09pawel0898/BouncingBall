@@ -5,6 +5,7 @@
 #include "../Graphics/Renderer.h"
 #include "../Graphics/Texture.h"
 #include <chrono>
+#include <thread>
 
 namespace En
 {
@@ -39,19 +40,34 @@ namespace En
         Renderer::Init(m_Window->GetWidth(), m_Window->GetHeight());
         Renderer::EnableBlending();
 
+        using TimePoint = std::chrono::high_resolution_clock;
+
+        std::chrono::steady_clock::time_point tFrameStart,tLastUpdate;
+        tLastUpdate = TimePoint::now();
+        double tElapsedTime{ 0.0 };
+        double tMinTimePerFrame = 1000.0 / m_FPSLIMIT;
+     
+        auto updateStats = [&]
+        {
+            m_DeltaTime = tElapsedTime;
+            m_FPS = (1.0 / m_DeltaTime) * 1000;
+        };
+
         while (m_Running)
         {
-            auto tFrameStart = std::chrono::high_resolution_clock::now();
-            Renderer::Clear();
+            tFrameStart = TimePoint::now();
+            tElapsedTime = std::chrono::duration<double, std::milli>
+                (tFrameStart - tLastUpdate).count();
 
-            m_StateManager->OnUpdate(m_DeltaTime);
-            m_StateManager->OnRender();
-
-            auto tFrameEnd = std::chrono::high_resolution_clock::now();
-            m_DeltaTime = std::chrono::duration<double, std::milli>
-                (tFrameEnd - tFrameStart).count();
-
-            m_Window->OnUpdate();
+            if (tElapsedTime >= tMinTimePerFrame)
+            {
+                Renderer::Clear();
+                m_StateManager->OnUpdate(m_DeltaTime);
+                m_StateManager->OnRender();
+                m_Window->OnUpdate();
+                tLastUpdate = TimePoint::now();
+                updateStats();
+            }
         }
     }
 }
